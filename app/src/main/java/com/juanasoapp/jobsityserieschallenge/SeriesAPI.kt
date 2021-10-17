@@ -1,10 +1,10 @@
 package com.juanasoapp.jobsityserieschallenge
 
 import com.juanasoapp.jobsityserieschallenge.serieslist.Series
+import retrofit2.http.GET
 
-class SeriesAPI {
-    fun fetchAllSeriesList(): List<Series> {
-        TODO("Not yet implemented")
-    }
+interface SeriesAPI {
+    @GET("shows")
+    suspend fun fetchAllSeriesList(): List<Series>
 
 }

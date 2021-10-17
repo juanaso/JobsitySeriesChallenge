@@ -19,7 +19,7 @@ class SeriesListsFeatures :BaseUITest(){
     fun displaysListOfMovies(){
         Thread.sleep(3000)
 
-        assertRecyclerViewItemCount(R.id.series_list,250)
+        assertRecyclerViewItemCount(R.id.series_list,240)
 
         onView(
             allOf(

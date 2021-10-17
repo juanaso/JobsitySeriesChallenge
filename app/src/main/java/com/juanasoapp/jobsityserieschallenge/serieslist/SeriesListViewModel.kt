@@ -6,7 +6,7 @@ class SeriesListViewModel(
     private val repository: SeriesListRepository
 ): ViewModel() {
 
-    val seriesList = liveData<Result<List<Series>>> {
+    val seriesList = liveData {
         emitSource(repository.getSeriesList().asLiveData())
     }
 

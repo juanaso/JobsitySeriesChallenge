@@ -10,17 +10,22 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import com.google.gson.Gson
 import com.juanasoapp.jobsityserieschallenge.R
 import com.juanasoapp.jobsityserieschallenge.SeriesAPI
+import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class SeriesListFragment : Fragment() {
 
     lateinit var viewModel: SeriesListViewModel
+
+    @Inject
     lateinit var viewModelFactory: SeriesListViewModelFactory
-    lateinit var seriesListRepository: SeriesListRepository
-    lateinit var seriesListService: SeriesListService
-    lateinit var api : SeriesAPI
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,24 +33,22 @@ class SeriesListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_series_list, container, false)
 
-        api = SeriesAPI()
-        seriesListService = SeriesListService(api)
+        setUpViewModel()
+        setUpObservers(view)
 
-        seriesListRepository =
-            SeriesListRepository(seriesListService)
-        viewModelFactory =
-            SeriesListViewModelFactory(
-                seriesListRepository
-            )
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SeriesListViewModel::class.java)
+        return view
+    }
 
+    private fun setUpObservers(view: View?) {
         viewModel.seriesList.observe(this as LifecycleOwner) { seriesList ->
-            if (seriesList.getOrNull()!= null) {
+            if (seriesList.getOrNull() != null) {
                 setUpList(view, seriesList.getOrNull()!!)
             }
         }
+    }
 
-        return view
+    private fun setUpViewModel() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SeriesListViewModel::class.java)
     }
 
     private fun setUpList(
@@ -54,10 +57,7 @@ class SeriesListFragment : Fragment() {
     ) {
         with(view as RecyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter =
-                MySeriesRecyclerViewAdapter(
-                    seriesList
-                )
+            adapter = MySeriesRecyclerViewAdapter(seriesList)
         }
     }
 
