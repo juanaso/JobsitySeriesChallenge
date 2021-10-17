@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.serieslist
 
 import com.juanasoapp.jobsityserieschallenge.serieslist.Series
 import com.juanasoapp.jobsityserieschallenge.serieslist.SeriesListRepository
@@ -18,8 +18,8 @@ import org.junit.Test
 class SeriesListViewModelShould : BaseUnitTest() {
 
     private val repository: SeriesListRepository = mock()
-    private val playlists = mock<List<Series>>()
-    private val expected = Result.success(playlists)
+    private val seriesList = mock<List<Series>>()
+    private val expected = Result.success(seriesList)
     private val exception = RuntimeException("Something went wrong")
 
 

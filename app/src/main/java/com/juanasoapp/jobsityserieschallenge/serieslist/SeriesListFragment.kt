@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.juanasoapp.jobsityserieschallenge.R
+import com.juanasoapp.jobsityserieschallenge.SeriesAPI
 
 
 class SeriesListFragment : Fragment() {
@@ -18,6 +19,8 @@ class SeriesListFragment : Fragment() {
     lateinit var viewModel: SeriesListViewModel
     lateinit var viewModelFactory: SeriesListViewModelFactory
     lateinit var seriesListRepository: SeriesListRepository
+    lateinit var seriesListService: SeriesListService
+    lateinit var api : SeriesAPI
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +28,11 @@ class SeriesListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_series_list, container, false)
 
+        api = SeriesAPI()
+        seriesListService = SeriesListService(api)
+
         seriesListRepository =
-            SeriesListRepository()
+            SeriesListRepository(seriesListService)
         viewModelFactory =
             SeriesListViewModelFactory(
                 seriesListRepository
