@@ -7,16 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.google.gson.Gson
 import com.juanasoapp.jobsityserieschallenge.R
-import com.juanasoapp.jobsityserieschallenge.SeriesAPI
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.fragment_series_list.view.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -32,14 +29,49 @@ class SeriesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_series_list, container, false)
-
         setUpViewModel()
-        setUpObservers(view)
-
+        setUpObserversRecycler(view.series_list)
+        setUpObserverLoader(view)
+        setUpSearchView(view)
         return view
     }
 
-    private fun setUpObservers(view: View?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.onTextSet("")
+    }
+
+    private fun setUpObserverLoader(view: View) {
+        viewModel.loader.observe(this as LifecycleOwner) { loading ->
+            when (loading) {
+                true -> {
+                    view.series_list_loader.visibility = View.VISIBLE
+                }
+                false -> {
+                    view.series_list_loader.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun setUpSearchView(view: View) {
+        view.series_list_searchview.setOnClickListener {
+            (it as SearchView).setIconified(false);
+        }
+
+        view.series_list_searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.onTextSet(query?:"")
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+    }
+
+    private fun setUpObserversRecycler(view: View?) {
         viewModel.seriesList.observe(this as LifecycleOwner) { seriesList ->
             if (seriesList.getOrNull() != null) {
                 setUpList(view, seriesList.getOrNull()!!)

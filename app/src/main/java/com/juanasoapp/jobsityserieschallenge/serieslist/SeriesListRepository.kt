@@ -1,8 +1,8 @@
 package com.juanasoapp.jobsityserieschallenge.serieslist
 
-import com.juanasoapp.jobsityserieschallenge.serieslist.Series
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
@@ -10,8 +10,13 @@ class SeriesListRepository @Inject constructor(
     private val service : SeriesListService
 ) {
 
-    suspend fun getSeriesList(): Flow<Result<List<Series>>> =
-        service.fetchSeriesList()
+    suspend fun getSeriesList(currentQuery: String= ""): Flow<Result<List<Series>>> {
+        return if(currentQuery.isBlank()){
+            service.fetchSeriesList()
+        }else{
+            service.fetchQuerySeriesList(currentQuery)
+        }
+    }
 
 
 }

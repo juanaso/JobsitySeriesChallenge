@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
@@ -19,14 +20,14 @@ abstract class BaseUITest {
     val mActivityRule = ActivityTestRule(MainActivity::class.java)
         @Rule get
 
-//    @Before
-//    fun setup() {
-//        IdlingRegistry.getInstance().register(idlingResource)
-//    }
-//    @After
-//    fun tearDown(){
-//        IdlingRegistry.getInstance().unregister(idlingResource)
-//    }
+    @Before
+    fun setup() {
+        IdlingRegistry.getInstance().register(idlingResource)
+    }
+    @After
+    fun tearDown(){
+        IdlingRegistry.getInstance().unregister(idlingResource)
+    }
 
     fun nthChildOf(parentMatcher: Matcher<View>, childPosition: Int): Matcher<View> {
         return object : TypeSafeMatcher<View>() {

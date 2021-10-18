@@ -13,39 +13,83 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.lang.RuntimeException
 
-class SeriesListServiceShould:BaseUnitTest() {
-    private var api :SeriesAPI = mock()
-    private val seriesList : List<Series> = mock()
-    private lateinit var service : SeriesListService
+class SeriesListServiceShould : BaseUnitTest() {
+    private var api: SeriesAPI = mock()
+    private val mapper: SearchedSeriesMapper = mock()
+    private val seriesList: List<Series> = mock()
+    private val searchedSeriesList: SeriesSearchResponse = mock()
+    private lateinit var service: SeriesListService
+    private val testString = "arrow"
 
     @Test
-    fun fetchSeriesListFromSeriesAPI()  = runBlockingTest {
-        service = SeriesListService(api)
+    fun fetchSeriesListFromSeriesAPI() = runBlockingTest {
+        service = SeriesListService(api, mapper)
         service.fetchSeriesList().first()
         verify(api, times(1)).fetchAllSeriesList()
+    }
+
+    @Test
+    fun fetchSearchedSeriesListFromSeriesAPI() = runBlockingTest {
+        service = SeriesListService(api, mapper)
+        service.fetchQuerySeriesList(testString).first()
+        verify(api, times(1)).fetchWithQuerySeriesList(testString)
     }
 
     @Test
     fun convertValuestoFlowResultAndEmitsThem() = runBlockingTest {
         mockSuccessCase()
 
-        assertEquals(Result.success(seriesList),service.fetchSeriesList().first())
+        assertEquals(Result.success(seriesList), service.fetchSeriesList().first())
     }
 
     @Test
-    fun emitsErrorResultWhenNetworksFails()= runBlockingTest {
+    fun convertSearchedValuestoFlowResultAndEmitsThem() = runBlockingTest {
+        runBlocking {
+            whenever(api.fetchWithQuerySeriesList(testString)).thenReturn(searchedSeriesList)
+            whenever(mapper.invoke(searchedSeriesList)).thenReturn(seriesList)
+            service = SeriesListService(api, mapper)
+        }
+
+        assertEquals(
+            Result.success(seriesList),
+            service.fetchQuerySeriesList(testString).first()
+        )
+    }
+
+    @Test
+    fun emitsErrorResultWhenNetworksFails() = runBlockingTest {
         mockFailureCase()
 
-        assertEquals("Something went wrong",service.fetchSeriesList().first().exceptionOrNull()?.message)
+        assertEquals(
+            "Something went wrong",
+            service.fetchSeriesList().first().exceptionOrNull()?.message
+        )
     }
 
-    private fun mockFailureCase() {
+    @Test
+    fun delegateCastingToMapper() = runBlockingTest {
+        runBlocking {
+            whenever(api.fetchWithQuerySeriesList(testString)).thenReturn(searchedSeriesList)
+            whenever(mapper.invoke(searchedSeriesList)).thenReturn(seriesList)
+            service = SeriesListService(api, mapper)
+        }
+        service.fetchQuerySeriesList(testString).first()
+        verify(mapper, times(1)).invoke(searchedSeriesList)
+    }
+
+
+    private suspend fun mockFailureCase() {
         whenever(api.fetchAllSeriesList()).thenThrow(RuntimeException("Backend Exception"))
-        service = SeriesListService(api)
+        service = SeriesListService(api, mapper)
     }
 
-    private fun mockSuccessCase() {
+    private suspend fun mockSuccessCase() {
         whenever(api.fetchAllSeriesList()).thenReturn(seriesList)
-        service = SeriesListService(api)
+        service = SeriesListService(api, mapper)
+    }
+
+    private suspend fun mockSearchedSuccessCase() {
+        whenever(api.fetchWithQuerySeriesList(testString)).thenReturn(searchedSeriesList)
+        service = SeriesListService(api, mapper)
     }
 }

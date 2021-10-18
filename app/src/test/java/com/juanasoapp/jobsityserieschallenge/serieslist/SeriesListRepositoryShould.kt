@@ -19,6 +19,10 @@ class SeriesListRepositoryShould : BaseUnitTest() {
     private val seriesList = mock<List<Series>>()
     private val expected = Result.success(seriesList)
     private val exception = RuntimeException("Something went wrong")
+    private val testString = "arrow"
+
+    private val searchedSeries = mock<SeriesSearchResponse>()
+    private val mapper: SearchedSeriesMapper = mock()
 
 
     @Test
@@ -26,6 +30,13 @@ class SeriesListRepositoryShould : BaseUnitTest() {
         val repository = SeriesListRepository(service)
         repository.getSeriesList()
         verify(service, times(1)).fetchSeriesList()
+    }
+
+    @Test
+    fun getSerchedSeriesListFromService() = runBlockingTest {
+        val repository = SeriesListRepository(service)
+        repository.getSeriesList(testString)
+        verify(service, times(1)).fetchQuerySeriesList(testString)
     }
 
     @Test
@@ -41,6 +52,8 @@ class SeriesListRepositoryShould : BaseUnitTest() {
 
         assertEquals(exception,repository.getSeriesList().first().exceptionOrNull())
     }
+
+
 
     private fun mockFailureCase(): SeriesListRepository {
         runBlocking {
