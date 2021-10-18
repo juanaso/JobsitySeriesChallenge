@@ -11,6 +11,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
 import com.juanasoapp.jobsityserieschallenge.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_series_list.view.*
@@ -89,7 +90,10 @@ class SeriesListFragment : Fragment() {
     ) {
         with(view as RecyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter = MySeriesRecyclerViewAdapter(seriesList)
+            adapter = MySeriesRecyclerViewAdapter(seriesList,context){
+                val action = SeriesListFragmentDirections.actionSeriesListFragmentToSeriesDetailFragment(it)
+                findNavController().navigate(action)
+            }
         }
     }
 

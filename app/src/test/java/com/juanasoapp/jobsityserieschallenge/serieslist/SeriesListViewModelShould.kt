@@ -38,16 +38,6 @@ class SeriesListViewModelShould : BaseUnitTest() {
         verify(repository, times(1)).getSeriesList()
     }
 
-//    @Test
-//    fun myTest() = runBlockingTest {
-//        val myChannel = ConflatedBroadcastChannel<String>()
-//        myChannel.send("hello")
-//        val subscription = myChannel.openSubscription()
-//        val result = subscription.receive()
-//        subscription.cancel()
-//        assertEquals("hello", result)
-//    }
-
     @ExperimentalCoroutinesApi
     @Test
     fun emitsSeriesListFromRepository() = runBlockingTest {

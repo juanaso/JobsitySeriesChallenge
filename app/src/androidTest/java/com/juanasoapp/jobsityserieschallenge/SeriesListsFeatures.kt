@@ -79,6 +79,18 @@ class SeriesListsFeatures :BaseUITest(){
         assertNotDisplayed(R.id.series_list_loader)
     }
 
+    @Test
+    fun navigateToSeriesDetailScreen(){
+        onView(
+            allOf(
+                withId(R.id.series_name),
+                isDescendantOfA(nthChildOf(withId(R.id.series_list),0))
+            )
+        ).perform(click())
+        assertDisplayed(R.id.series_detail_root)
+
+    }
+
     fun typeSearchViewText(text: String): ViewAction {
         return object : ViewAction {
             override fun getDescription(): String {
@@ -101,4 +113,5 @@ class SeriesListsFeatures :BaseUITest(){
             .perform(SearchViewActionExtension.typeText(textToSearch))
             .perform(pressKey(KeyEvent.KEYCODE_ENTER))
     }
+
 }
