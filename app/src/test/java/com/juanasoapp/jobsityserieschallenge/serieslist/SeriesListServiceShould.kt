@@ -87,9 +87,4 @@ class SeriesListServiceShould : BaseUnitTest() {
         whenever(api.fetchAllSeriesList()).thenReturn(seriesList)
         service = SeriesListService(api, mapper)
     }
-
-    private suspend fun mockSearchedSuccessCase() {
-        whenever(api.fetchWithQuerySeriesList(testString)).thenReturn(searchedSeriesList)
-        service = SeriesListService(api, mapper)
-    }
 }

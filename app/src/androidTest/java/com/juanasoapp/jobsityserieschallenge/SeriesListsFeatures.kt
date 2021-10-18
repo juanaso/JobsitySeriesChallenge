@@ -11,15 +11,16 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
+import com.juanasoapp.jobsityserieschallenge.utils.BaseUITest
+import com.juanasoapp.jobsityserieschallenge.utils.SearchViewActionExtension
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
 import org.junit.Test
-import kotlin.concurrent.thread
 
-class SeriesListsFeatures :BaseUITest(){
+class SeriesListsFeatures : BaseUITest(){
 
     @Test
     fun displayAppTitle(){

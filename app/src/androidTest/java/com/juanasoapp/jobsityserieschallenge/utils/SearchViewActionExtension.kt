@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.utils
 
 import android.view.View
 import androidx.appcompat.widget.SearchView

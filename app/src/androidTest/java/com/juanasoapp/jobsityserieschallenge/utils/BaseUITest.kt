@@ -1,10 +1,13 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.utils
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.juanasoapp.jobsityserieschallenge.MainActivity
 import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -43,6 +46,21 @@ abstract class BaseUITest {
                 return (parentMatcher.matches(parent)
                         && parent.childCount > childPosition
                         && parent.getChildAt(childPosition) == view)
+            }
+        }
+    }
+
+    fun withChildViewCount(count: Int, childMatcher: Matcher<View>? = null): Matcher<View> {
+        return object : BoundedMatcher<View, ViewGroup>(ViewGroup::class.java) {
+            override fun matchesSafely(viewGroup: ViewGroup): Boolean {
+                val matchCount = viewGroup.children
+                    .filter { childMatcher?.matches(it)?:true }
+                    .count()
+                return matchCount == count
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("with child count $count")
             }
         }
     }

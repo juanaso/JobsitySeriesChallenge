@@ -17,13 +17,8 @@ class SeriesListRepositoryShould : BaseUnitTest() {
 
     private val service: SeriesListService = mock()
     private val seriesList = mock<List<Series>>()
-    private val expected = Result.success(seriesList)
     private val exception = RuntimeException("Something went wrong")
     private val testString = "arrow"
-
-    private val searchedSeries = mock<SeriesSearchResponse>()
-    private val mapper: SearchedSeriesMapper = mock()
-
 
     @Test
     fun getSeriesListFromService() = runBlockingTest {

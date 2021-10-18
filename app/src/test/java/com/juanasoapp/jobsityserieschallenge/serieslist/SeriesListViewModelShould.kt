@@ -25,7 +25,6 @@ class SeriesListViewModelShould : BaseUnitTest() {
     private val exception = RuntimeException("Something went wrong")
 
     private val searchedSeriesList = mock<List<Series>>()
-    private val searchedExpected = Result.success(searchedSeriesList)
 
 
     @ExperimentalCoroutinesApi
