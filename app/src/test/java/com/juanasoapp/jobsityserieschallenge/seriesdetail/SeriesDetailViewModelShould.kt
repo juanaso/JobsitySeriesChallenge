@@ -19,24 +19,27 @@ class SeriesDetailViewModelShould : BaseUnitTest() {
     private val episodes = mock<List<Episode>>()
     private val expected = Result.success(episodes)
     private val exception = RuntimeException("Something went wrong")
-
+    private val id = "1"
 
     @Test
     fun getEpisodeListFromRepository() = runBlockingTest {
         var viewModel = mockSuccessfulCase()
+        viewModel.getEpisodes(id)
         viewModel.episodes.getValueForTest()
-        verify(repository, times(1)).getEpisodes()
+        verify(repository, times(1)).getEpisodes(id)
     }
 
     @Test
-    fun emitsEpisodesListFromRepository()= runBlockingTest  {
+    fun emitsEpisodesListFromRepository() = runBlockingTest {
         val viewModel = mockSuccessfulCase()
+        viewModel.getEpisodes(id)
         assertEquals(expected, viewModel.episodes.getValueForTest())
     }
 
     @Test
     fun emitErrorWhenReceiveError() = runBlockingTest {
         val viewModel = mockFailureCase()
+        viewModel.getEpisodes(id)
         assertEquals(exception, viewModel.episodes.getValueForTest()!!.exceptionOrNull())
     }
 
@@ -44,6 +47,7 @@ class SeriesDetailViewModelShould : BaseUnitTest() {
     fun displaySpinnerWhileLoading() = runBlockingTest {
         val viewModel = mockSuccessfulCase()
         viewModel.loader.captureValues {
+            viewModel.getEpisodes(id)
             viewModel.episodes.getValueForTest()
             TestCase.assertEquals(true, values[0])
         }
@@ -53,6 +57,7 @@ class SeriesDetailViewModelShould : BaseUnitTest() {
     fun closeSpinnerAfterSeriesListLoads() = runBlockingTest {
         val viewModel = mockSuccessfulCase()
         viewModel.loader.captureValues {
+            viewModel.getEpisodes(id)
             viewModel.episodes.getValueForTest()
             TestCase.assertEquals(false, values.last())
         }
@@ -60,7 +65,7 @@ class SeriesDetailViewModelShould : BaseUnitTest() {
 
     private fun mockFailureCase(): SeriesDetailViewModel {
         runBlocking {
-            whenever(repository.getEpisodes()).thenReturn(
+            whenever(repository.getEpisodes(id)).thenReturn(
                 flow { emit(Result.failure<List<Episode>>(exception)) }
             )
         }
@@ -71,7 +76,7 @@ class SeriesDetailViewModelShould : BaseUnitTest() {
 
     private fun mockSuccessfulCase(): SeriesDetailViewModel {
         runBlocking {
-            whenever(repository.getEpisodes()).thenReturn(
+            whenever(repository.getEpisodes(id)).thenReturn(
                 flow {
                     emit(expected)
                 }

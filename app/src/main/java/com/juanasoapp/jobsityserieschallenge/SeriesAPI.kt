@@ -1,9 +1,11 @@
 package com.juanasoapp.jobsityserieschallenge
 
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode
 import com.juanasoapp.jobsityserieschallenge.serieslist.Series
 import com.juanasoapp.jobsityserieschallenge.serieslist.SeriesSearchRaw
 import com.juanasoapp.jobsityserieschallenge.serieslist.SeriesSearchResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SeriesAPI {
@@ -12,5 +14,8 @@ interface SeriesAPI {
 
     @GET("search/shows")
     suspend fun fetchWithQuerySeriesList(@Query("q")testString: String): SeriesSearchResponse
+
+    @GET("shows/{id}/episodes")
+    fun fetchEpisodes(@Path("id")id:String):List<Episode>
 
 }

@@ -1,22 +1,26 @@
 package com.juanasoapp.jobsityserieschallenge.seriesdetail
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
-import com.juanasoapp.jobsityserieschallenge.seriesdetail.SeriesDetailRepository
+import androidx.lifecycle.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
-class SeriesDetailViewModel (
+class SeriesDetailViewModel(
     private var repository: SeriesDetailRepository
-):ViewModel() {
+) : ViewModel() {
+
 
     var loader = MutableLiveData<Boolean>()
+    val episodes = MutableLiveData<Result<List<Episode>>>()
 
-    val episodes = liveData {
-        loader.postValue(true)
-        emitSource(repository.getEpisodes()
-            .onEach { loader.postValue(false) }
-            .asLiveData())
+    fun getEpisodes(id: String) {
+        viewModelScope.launch {
+            loader.postValue(true)
+            repository.getEpisodes(id)
+                .onEach { loader.postValue(false) }
+                .collect {
+                    episodes.postValue(it)
+                }
+        }
     }
 }

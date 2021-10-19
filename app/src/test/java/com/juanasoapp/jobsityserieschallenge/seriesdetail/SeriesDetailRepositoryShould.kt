@@ -17,28 +17,30 @@ class SeriesDetailRepositoryShould:BaseUnitTest() {
     private val service: SeriesDetailService = mock()
     private val episodes = mock<List<Episode>>()
     private val exception = RuntimeException("Something went wrong")
+    private val id = "1"
+
 
     @Test
     fun getEpisodesFromService() = runBlockingTest {
         val repository = SeriesDetailRepository(service)
-        repository.getEpisodes()
-        verify(service, times(1)).fetchEpisodes()
+        repository.getEpisodes(id)
+        verify(service, times(1)).fetchEpisodes(id)
     }
     @Test
     fun emitsEpisodesFromService() = runBlockingTest{
         val repository = mockSuccessfulCase()
-        Assert.assertEquals(episodes, repository.getEpisodes().first().getOrNull())
+        Assert.assertEquals(episodes, repository.getEpisodes(id).first().getOrNull())
     }
 
     @Test
     fun propagateErrors() = runBlockingTest{
         val repository =  mockFailureCase()
 
-        Assert.assertEquals(exception, repository.getEpisodes().first().exceptionOrNull())
+        Assert.assertEquals(exception, repository.getEpisodes(id).first().exceptionOrNull())
     }
 
     private fun mockSuccessfulCase(): SeriesDetailRepository {
-        whenever(service.fetchEpisodes()).thenReturn(
+        whenever(service.fetchEpisodes(id)).thenReturn(
             flow { emit(Result.success(episodes)) }
         )
 
@@ -48,7 +50,7 @@ class SeriesDetailRepositoryShould:BaseUnitTest() {
 
     private fun mockFailureCase(): SeriesDetailRepository {
         runBlocking {
-            whenever(service.fetchEpisodes()).thenReturn(
+            whenever(service.fetchEpisodes(id)).thenReturn(
                 flow { emit(Result.failure<List<Episode>>(exception)) }
             )
         }
