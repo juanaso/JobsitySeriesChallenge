@@ -1,4 +1,83 @@
 package com.juanasoapp.jobsityserieschallenge.seriesdetail
 
-class SeriesDetailViewModelShould {
+import com.juanasoapp.jobsityserieschallenge.utils.BaseUnitTest
+import com.juanasoapp.jobsityserieschallenge.utils.captureValues
+import com.juanasoapp.jobsityserieschallenge.utils.getValueForTest
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import junit.framework.TestCase
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
+
+class SeriesDetailViewModelShould : BaseUnitTest() {
+    private val repository: SeriesDetailRepository = mock()
+    private val episodes = mock<List<Episode>>()
+    private val expected = Result.success(episodes)
+    private val exception = RuntimeException("Something went wrong")
+
+
+    @Test
+    fun getEpisodeListFromRepository() = runBlockingTest {
+        var viewModel = mockSuccessfulCase()
+        viewModel.episodes.getValueForTest()
+        verify(repository, times(1)).getEpisodes()
+    }
+
+    @Test
+    fun emitsEpisodesListFromRepository()= runBlockingTest  {
+        val viewModel = mockSuccessfulCase()
+        assertEquals(expected, viewModel.episodes.getValueForTest())
+    }
+
+    @Test
+    fun emitErrorWhenReceiveError() = runBlockingTest {
+        val viewModel = mockFailureCase()
+        assertEquals(exception, viewModel.episodes.getValueForTest()!!.exceptionOrNull())
+    }
+
+    @Test
+    fun displaySpinnerWhileLoading() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+        viewModel.loader.captureValues {
+            viewModel.episodes.getValueForTest()
+            TestCase.assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun closeSpinnerAfterSeriesListLoads() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+        viewModel.loader.captureValues {
+            viewModel.episodes.getValueForTest()
+            TestCase.assertEquals(false, values.last())
+        }
+    }
+
+    private fun mockFailureCase(): SeriesDetailViewModel {
+        runBlocking {
+            whenever(repository.getEpisodes()).thenReturn(
+                flow { emit(Result.failure<List<Episode>>(exception)) }
+            )
+        }
+
+        return SeriesDetailViewModel(repository)
+    }
+
+
+    private fun mockSuccessfulCase(): SeriesDetailViewModel {
+        runBlocking {
+            whenever(repository.getEpisodes()).thenReturn(
+                flow {
+                    emit(expected)
+                }
+            )
+        }
+
+        return SeriesDetailViewModel(repository)
+    }
 }

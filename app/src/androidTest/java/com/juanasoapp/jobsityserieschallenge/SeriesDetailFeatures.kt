@@ -1,25 +1,15 @@
 package com.juanasoapp.jobsityserieschallenge
 
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.children
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
 import com.juanasoapp.jobsityserieschallenge.utils.BaseUITest
-import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
-import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.Description
-import org.hamcrest.Matcher
 import org.junit.Test
 
 class SeriesDetailFeatures:BaseUITest() {

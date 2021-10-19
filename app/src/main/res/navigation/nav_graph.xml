@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/seriesDetailFragment"
-        android:name="com.juanasoapp.jobsityserieschallenge.SeriesDetailFragment"
+        android:name="com.juanasoapp.jobsityserieschallenge.seriesdetail.SeriesDetailFragment"
         android:label="fragment_series_detail"
         tools:layout="@layout/fragment_series_detail" >
         <argument

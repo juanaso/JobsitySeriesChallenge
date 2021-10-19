@@ -5,7 +5,7 @@
     android:id="@+id/series_detail_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SeriesDetailFragment">
+    tools:context=".seriesdetail.SeriesDetailFragment">
 
     <ImageView
         android:id="@+id/series_image"
