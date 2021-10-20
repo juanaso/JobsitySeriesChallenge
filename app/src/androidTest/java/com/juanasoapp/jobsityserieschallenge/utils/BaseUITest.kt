@@ -3,12 +3,17 @@ package com.juanasoapp.jobsityserieschallenge.utils
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.children
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.BoundedMatcher
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.juanasoapp.jobsityserieschallenge.MainActivity
+import com.juanasoapp.jobsityserieschallenge.R
 import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
+import org.hamcrest.CoreMatchers
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
@@ -64,4 +69,16 @@ abstract class BaseUITest {
             }
         }
     }
+
+
+
+    fun NavigateToDetail() {
+        Espresso.onView(
+            CoreMatchers.allOf(
+                ViewMatchers.withId(R.id.series_name),
+                ViewMatchers.isDescendantOfA(nthChildOf(ViewMatchers.withId(R.id.series_list), 0))
+            )
+        ).perform(ViewActions.click())
+    }
+
 }

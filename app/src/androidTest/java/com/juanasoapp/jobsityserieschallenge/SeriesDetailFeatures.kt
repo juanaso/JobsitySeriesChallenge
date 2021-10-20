@@ -5,8 +5,7 @@ import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
 import com.juanasoapp.jobsityserieschallenge.utils.BaseUITest
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
@@ -38,16 +37,16 @@ class SeriesDetailFeatures:BaseUITest() {
         ).check(matches(withChildViewCount(3)))
     }
 
+    @Test
+    fun navigateToEpisodeDetailScreen(){
+        NavigateToDetail()
+        Thread.sleep(1000)
+        onView(withId(R.id.series_detail_root))
+            .perform(swipeUp())
 
+        onView(hasSibling(withText("season 1"))).perform(click())
+        onView(hasSibling(withText("1 - Pilot"))).perform(click())
 
-    private fun NavigateToDetail() {
-        onView(
-            allOf(
-                withId(R.id.series_name),
-                isDescendantOfA(nthChildOf(withId(R.id.series_list), 0))
-            )
-        ).perform(click())
+        assertDisplayed(R.id.episode_detail_root)
     }
-
-
 }

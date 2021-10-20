@@ -24,6 +24,20 @@
             app:argType="com.juanasoapp.jobsityserieschallenge.serieslist.Series"
             app:nullable="false"
             />
+        <action
+            android:id="@+id/action_seriesDetailFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.juanasoapp.jobsityserieschallenge.EpisodeDetailFragment"
+        android:label="fragment_episode_detail"
+        tools:layout="@layout/fragment_episode_detail" >
+        <argument
+            android:name="currentEpisode"
+            app:argType="com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode"
+            app:nullable="false"
+            />
     </fragment>
 
 </navigation>

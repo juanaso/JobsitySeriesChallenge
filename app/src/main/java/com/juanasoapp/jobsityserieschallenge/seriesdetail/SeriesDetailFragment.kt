@@ -9,11 +9,14 @@ import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.juanasoapp.jobsityserieschallenge.R
 import com.juanasoapp.jobsityserieschallenge.custom.CustomExpandableRecycler
 import com.juanasoapp.jobsityserieschallenge.serieslist.Series
+import com.juanasoapp.jobsityserieschallenge.serieslist.SeriesListFragmentDirections
 import com.juanasoapp.jobsityserieschallenge.setTextHTML
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_series_detail.*
@@ -74,9 +77,9 @@ class SeriesDetailFragment : Fragment() {
             customExpandableRecycler?.setEpisodes(season)
             customExpandableRecycler?.setSeasonTitle(seasonTitle)
             customExpandableRecycler?.onItemClick = {
-
+                val action = SeriesDetailFragmentDirections.actionSeriesDetailFragmentToEpisodeDetailFragment(it)
+                findNavController().navigate(action)
             }
-
             view.linear_seasons_container.addView(customExpandableRecycler)
         }
     }
