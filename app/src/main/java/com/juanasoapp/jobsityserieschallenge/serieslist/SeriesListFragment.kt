@@ -14,7 +14,6 @@ import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.juanasoapp.jobsityserieschallenge.R
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_series_list.*
 import kotlinx.android.synthetic.main.fragment_series_list.view.*
 import javax.inject.Inject
 
@@ -63,7 +62,7 @@ class SeriesListFragment : Fragment() {
 
     private fun setUpSearchView(view: View) {
         view.series_list_searchview.setOnClickListener {
-            (it as SearchView).setIconified(false);
+            (it as SearchView).isIconified = false;
         }
 
         view.series_list_searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

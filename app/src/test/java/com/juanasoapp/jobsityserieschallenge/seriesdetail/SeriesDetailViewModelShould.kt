@@ -18,7 +18,7 @@ class SeriesDetailViewModelShould : BaseUnitTest() {
     private val repository: SeriesDetailRepository = mock()
     private val episodes = mock<List<Episode>>()
     private val expected = Result.success(episodes)
-    private val exception = RuntimeException("Something went wrong")
+    private val exception = RuntimeException(errorMessage)
     private val id = "1"
 
     @Test

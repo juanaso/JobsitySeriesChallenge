@@ -2,7 +2,6 @@ package com.juanasoapp.jobsityserieschallenge.serieslist
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
 @Parcelize
 class Series(

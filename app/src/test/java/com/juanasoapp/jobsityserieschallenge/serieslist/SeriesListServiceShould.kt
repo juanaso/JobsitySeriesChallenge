@@ -21,6 +21,7 @@ class SeriesListServiceShould : BaseUnitTest() {
     private lateinit var service: SeriesListService
     private val testString = "arrow"
 
+
     @Test
     fun fetchSeriesListFromSeriesAPI() = runBlockingTest {
         service = SeriesListService(api, mapper)
@@ -57,13 +58,15 @@ class SeriesListServiceShould : BaseUnitTest() {
     }
 
     @Test
-    fun emitsErrorResultWhenNetworksFails() = runBlockingTest {
-        mockFailureCase()
+    fun emitsErrorResultWhenNetworksFails() {
+        runBlockingTest {
+            mockFailureCase()
 
-        assertEquals(
-            "Something went wrong",
-            service.fetchSeriesList().first().exceptionOrNull()?.message
-        )
+            assertEquals(
+                errorMessage,
+                service.fetchSeriesList().first().exceptionOrNull()?.message
+            )
+        }
     }
 
     @Test
@@ -79,7 +82,7 @@ class SeriesListServiceShould : BaseUnitTest() {
 
 
     private suspend fun mockFailureCase() {
-        whenever(api.fetchAllSeriesList()).thenThrow(RuntimeException("Backend Exception"))
+        whenever(api.fetchAllSeriesList()).thenThrow(RuntimeException(backendExceptionErrorMessage))
         service = SeriesListService(api, mapper)
     }
 

@@ -7,7 +7,7 @@ class SeriesDetailRepository @Inject constructor(
     private val service :SeriesDetailService
 ) {
 
-    suspend fun getEpisodes(id: String):Flow<Result<List<Episode>>>  {
+    fun getEpisodes(id: String):Flow<Result<List<Episode>>>  {
         return service.fetchEpisodes(id)
     }
 }

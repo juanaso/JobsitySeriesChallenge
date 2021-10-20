@@ -1,15 +1,16 @@
 <resources>
     <string name="app_name">JobsitySeriesChallenge</string>
     <string name="app_display_title">Series App</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="series_title_test">under the dome</string>
     <string name="air_time_informations">Air Time Informations:</string>
-    <string name="sumary">Sumary:</string>
+    <string name="sumary">Summary:</string>
     <string name="genres_title">Genres</string>
     <string name="series_airtime_test">at 22:00</string>
     <string name="series_airtime_days_test">on tuesdays - wendsdays - fridays - tuesdays - mondays - saturdays - sundays</string>
     <string name="series_genres_test">horror - comedy - musical - drama - action - thriller - adventure - animated</string>
     <string name="series_summary_test">Under the Domeis the story of a small town that is suddenly and inexplicably sealed off from the rest of the world by an enormous transparent dome. The towns inhabitants must deal with surviving the post-apocalyptic conditions while searching for answers about the dome, where it came from and if and when it will go away.</string>
+    <string name="series_detail_seasons_title">Season %s</string>
+    <string name="custom_expandable_recycler">%s - %s</string>
 
 </resources>

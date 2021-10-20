@@ -1,12 +1,8 @@
 package com.juanasoapp.jobsityserieschallenge
 
 import android.view.KeyEvent
-import android.view.View
-import androidx.appcompat.widget.SearchView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -17,7 +13,6 @@ import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.asser
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.Matcher
 import org.junit.Test
 
 class SeriesListsFeatures : BaseUITest(){
@@ -31,7 +26,7 @@ class SeriesListsFeatures : BaseUITest(){
     fun emptySeriesListOnNewSearch(){
         enterTextAndSearch()
         IdlingRegistry.getInstance().unregister(idlingResource)
-        enterTextAndSearch("dexter")
+        enterTextAndSearch(textToSearchDummy)
         assertRecyclerViewItemCount(R.id.series_list,0)
     }
 
@@ -45,7 +40,7 @@ class SeriesListsFeatures : BaseUITest(){
                 isDescendantOfA(nthChildOf(withId(R.id.series_list),0))
             )
         )
-            .check(matches(withText("Under the Dome")))
+            .check(matches(withText(seresTitleDummy)))
             .check(matches(isDisplayed()))
     }
 
@@ -59,7 +54,7 @@ class SeriesListsFeatures : BaseUITest(){
                 isDescendantOfA(nthChildOf(withId(R.id.series_list),0))
             )
         )
-            .check(matches(withText("Under the Dome")))
+            .check(matches(withText(seresTitleDummy)))
             .check(matches(isDisplayed()))
 
     }
@@ -87,23 +82,7 @@ class SeriesListsFeatures : BaseUITest(){
 
     }
 
-    fun typeSearchViewText(text: String): ViewAction {
-        return object : ViewAction {
-            override fun getDescription(): String {
-                return "Change view text"
-            }
-
-            override fun getConstraints(): Matcher<View> {
-                return allOf(isDisplayed(), isAssignableFrom(SearchView::class.java))
-            }
-
-            override fun perform(uiController: UiController?, view: View?) {
-                (view as SearchView).setQuery(text, false)
-            }
-        }
-    }
-
-    private fun enterTextAndSearch(textToSearch:String="Under the Dome" ) {
+    private fun enterTextAndSearch(textToSearch:String=seresTitleDummy ) {
         onView(withId(R.id.series_list_searchview)).perform(click())
         onView(withId(R.id.series_list_searchview))
             .perform(SearchViewActionExtension.typeText(textToSearch))

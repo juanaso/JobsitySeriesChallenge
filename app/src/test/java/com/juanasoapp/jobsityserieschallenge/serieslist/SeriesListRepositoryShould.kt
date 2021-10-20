@@ -17,12 +17,12 @@ class SeriesListRepositoryShould : BaseUnitTest() {
 
     private val service: SeriesListService = mock()
     private val seriesList = mock<List<Series>>()
-    private val exception = RuntimeException("Something went wrong")
+    private val exception = RuntimeException(errorMessage)
     private val testString = "arrow"
 
     @Test
     fun getSeriesListFromService() = runBlockingTest {
-        val repository = SeriesListRepository(service)
+        val repository =  SeriesListRepository(service)
         repository.getSeriesList()
         verify(service, times(1)).fetchSeriesList()
     }

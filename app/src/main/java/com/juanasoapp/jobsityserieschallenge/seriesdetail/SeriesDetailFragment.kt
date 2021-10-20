@@ -5,21 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.juanasoapp.jobsityserieschallenge.R
 import com.juanasoapp.jobsityserieschallenge.custom.CustomExpandableRecycler
 import com.juanasoapp.jobsityserieschallenge.serieslist.Series
-import com.juanasoapp.jobsityserieschallenge.serieslist.SeriesListFragmentDirections
 import com.juanasoapp.jobsityserieschallenge.setTextHTML
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_series_detail.*
 import kotlinx.android.synthetic.main.fragment_series_detail.view.*
 import javax.inject.Inject
 
@@ -33,7 +29,7 @@ class SeriesDetailFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: SeriesDetailViewModelFactory
-    var isFirstTime= true
+    var isFirstTime = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +47,9 @@ class SeriesDetailFragment : Fragment() {
         setUpViewModel()
         setUpEpisodesObserver(view)
         setUpObserverLoader(view)
-        if(isFirstTime){
+        if (isFirstTime) {
             viewModel.getEpisodes(currentSeries.id)
-            isFirstTime=false
+            isFirstTime = false
         }
         setUpDetails(view)
     }
@@ -77,12 +73,15 @@ class SeriesDetailFragment : Fragment() {
     private fun setUpSeasonLinear(seasons: ArrayList<List<Episode>>, view: View) {
         view.linear_seasons_container.removeAllViews()
         seasons.forEach { season ->
-            val seasonTitle = "season ${season[0].season}"
+            val seasonTitle = getString(R.string.series_detail_seasons_title, season[0].season)
             val customExpandableRecycler = this.context?.let { CustomExpandableRecycler(it) }
             customExpandableRecycler?.setEpisodes(season)
             customExpandableRecycler?.setSeasonTitle(seasonTitle)
             customExpandableRecycler?.onItemClick = {
-                val action = SeriesDetailFragmentDirections.actionSeriesDetailFragmentToEpisodeDetailFragment(it)
+                val action =
+                    SeriesDetailFragmentDirections.actionSeriesDetailFragmentToEpisodeDetailFragment(
+                        it
+                    )
                 findNavController().navigate(action)
             }
             view.linear_seasons_container.addView(customExpandableRecycler)

@@ -16,7 +16,7 @@ class SeriesDetailRepositoryShould:BaseUnitTest() {
 
     private val service: SeriesDetailService = mock()
     private val episodes = mock<List<Episode>>()
-    private val exception = RuntimeException("Something went wrong")
+    private val exception = RuntimeException(errorMessage)
     private val id = "1"
 
 
@@ -44,8 +44,7 @@ class SeriesDetailRepositoryShould:BaseUnitTest() {
             flow { emit(Result.success(episodes)) }
         )
 
-        val repository = SeriesDetailRepository(service)
-        return repository
+        return SeriesDetailRepository(service)
     }
 
     private fun mockFailureCase(): SeriesDetailRepository {

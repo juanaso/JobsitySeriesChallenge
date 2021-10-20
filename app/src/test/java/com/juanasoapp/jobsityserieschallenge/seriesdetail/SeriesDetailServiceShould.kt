@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
@@ -37,18 +38,22 @@ class SeriesDetailServiceShould:BaseUnitTest() {
     fun emitsErrorResultWhenNetworksFails()= runBlockingTest {
         val service = mockFailureCase()
         Assert.assertEquals(
-            "Something went wrong",
+            errorMessage,
             service.fetchEpisodes(id).first().exceptionOrNull()?.message
         )
     }
 
     private fun mockFailureCase(): SeriesDetailService {
-        whenever(api.fetchEpisodes(id)).thenThrow(RuntimeException("Backend Exception"))
+        runBlocking{
+            whenever(api.fetchEpisodes(id)).thenThrow(RuntimeException(backendExceptionErrorMessage))
+        }
         return SeriesDetailService(api)
     }
 
     private fun mockSuccessfulCase(): SeriesDetailService {
-        whenever(api.fetchEpisodes(id)).thenReturn(seriesList)
+        runBlocking{
+            whenever(api.fetchEpisodes(id)).thenReturn(seriesList)
+        }
         return SeriesDetailService(api)
     }
 }

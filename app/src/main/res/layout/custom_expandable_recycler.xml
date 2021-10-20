@@ -21,6 +21,7 @@
             android:layout_centerVertical="true"
             android:textColor="@android:color/white"
             android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:textSize="20sp"/>
 
     </RelativeLayout>

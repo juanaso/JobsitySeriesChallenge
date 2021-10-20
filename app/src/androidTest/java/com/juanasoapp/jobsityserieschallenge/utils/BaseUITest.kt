@@ -25,6 +25,12 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 abstract class BaseUITest {
 
+    val seresTitleDummy = "Under the Dome"
+    val textToSearchDummy = "dexter"
+    val seriesDetailSeasonDummy = "Season 1"
+    val seriesDetailEpisodeTitle = "1 - Pilot"
+
+
     val mActivityRule = ActivityTestRule(MainActivity::class.java)
         @Rule get
 

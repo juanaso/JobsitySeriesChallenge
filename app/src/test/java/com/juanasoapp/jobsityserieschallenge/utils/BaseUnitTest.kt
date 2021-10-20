@@ -1,9 +1,16 @@
 package com.juanasoapp.jobsityserieschallenge.utils
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 
 open class BaseUnitTest {
+
+    val errorMessage = "Something went wrong"
+    val backendExceptionErrorMessage = "Backend Exception"
+
+
+    @ExperimentalCoroutinesApi
     @get:Rule
     var coroutineTestRule =
         MainCoroutineScopeRule()

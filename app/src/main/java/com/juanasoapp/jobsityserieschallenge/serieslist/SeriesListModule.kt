@@ -33,7 +33,6 @@ class SeriesListModule {
        return Retrofit.Builder()
         .baseUrl("https://api.tvmaze.com/")
         .client(client)
-//            .client(httpClient.build())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     }

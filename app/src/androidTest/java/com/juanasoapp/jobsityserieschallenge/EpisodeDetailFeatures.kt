@@ -11,6 +11,9 @@ import org.junit.Test
 
 class EpisodeDetailFeatures:BaseUITest() {
 
+    private val episodeDetailTitle = "Pilot"
+    private val episodeDetailNumber = "Episode 1"
+
     @Test
     fun displaysEpisodeNameAndDetails() {
         NavigateToDetail()
@@ -18,12 +21,11 @@ class EpisodeDetailFeatures:BaseUITest() {
         onView(withId(R.id.series_detail_root))
             .perform(swipeUp())
 
-        onView(ViewMatchers.hasSibling(ViewMatchers.withText("season 1"))).perform(ViewActions.click())
-        onView(ViewMatchers.hasSibling(ViewMatchers.withText("1 - Pilot"))).perform(ViewActions.click())
+        onView(ViewMatchers.hasSibling(ViewMatchers.withText(seriesDetailSeasonDummy))).perform(ViewActions.click())
+        onView(ViewMatchers.hasSibling(ViewMatchers.withText(seriesDetailEpisodeTitle))).perform(ViewActions.click())
 
-
-        assertDisplayed("Pilot")
-        assertDisplayed("Episode 1")
-        assertDisplayed("Season 1")
+        assertDisplayed(episodeDetailTitle)
+        assertDisplayed(episodeDetailNumber)
+        assertDisplayed(seriesDetailSeasonDummy)
     }
 }
