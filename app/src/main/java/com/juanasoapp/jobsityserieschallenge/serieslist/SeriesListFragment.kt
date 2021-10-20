@@ -14,6 +14,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.juanasoapp.jobsityserieschallenge.R
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_series_list.*
 import kotlinx.android.synthetic.main.fragment_series_list.view.*
 import javax.inject.Inject
 
@@ -24,6 +25,8 @@ class SeriesListFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: SeriesListViewModelFactory
+
+    var isFirstTime= true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +42,10 @@ class SeriesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onTextSet("")
+        if(isFirstTime){
+            viewModel.onTextSet("")
+            isFirstTime = false
+        }
     }
 
     private fun setUpObserverLoader(view: View) {
@@ -67,6 +73,9 @@ class SeriesListFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText?.isNotEmpty() == true){
+                    viewModel.onTextSet(newText)
+                }
                 return false
             }
         })

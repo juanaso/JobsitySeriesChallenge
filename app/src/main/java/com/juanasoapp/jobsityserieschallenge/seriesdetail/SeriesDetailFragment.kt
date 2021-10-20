@@ -33,6 +33,7 @@ class SeriesDetailFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: SeriesDetailViewModelFactory
+    var isFirstTime= true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +51,10 @@ class SeriesDetailFragment : Fragment() {
         setUpViewModel()
         setUpEpisodesObserver(view)
         setUpObserverLoader(view)
-        viewModel.getEpisodes(currentSeries.id)
+        if(isFirstTime){
+            viewModel.getEpisodes(currentSeries.id)
+            isFirstTime=false
+        }
         setUpDetails(view)
     }
 
@@ -71,6 +75,7 @@ class SeriesDetailFragment : Fragment() {
     }
 
     private fun setUpSeasonLinear(seasons: ArrayList<List<Episode>>, view: View) {
+        view.linear_seasons_container.removeAllViews()
         seasons.forEach { season ->
             val seasonTitle = "season ${season[0].season}"
             val customExpandableRecycler = this.context?.let { CustomExpandableRecycler(it) }

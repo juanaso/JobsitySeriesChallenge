@@ -25,24 +25,9 @@ class SeriesListViewModel(
             .asLiveData())
     }
 
-//    @ExperimentalCoroutinesApi
-//    val seriesList = liveData {
-//        loader.postValue(true)
-//        emitSource(searchChanel.asFlow()
-//            .onEach { loader.postValue(false) }
-//            .flatMapLatest { search ->
-//                repository.getSeriesList(search)
-//            }
-//            .catch { throwable ->
-////            _snackbar.value = throwable.message
-//            }.asLiveData())
-//    }
-
-
-//.launchIn(CoroutineScope(Dispatchers.IO))
-
     @ExperimentalCoroutinesApi
     fun onTextSet(query: String) {
+        loader.postValue(true)
         (seriesList as MutableLiveData).value = Result.success(emptyList())
         searchChanel.offer(query)
     }

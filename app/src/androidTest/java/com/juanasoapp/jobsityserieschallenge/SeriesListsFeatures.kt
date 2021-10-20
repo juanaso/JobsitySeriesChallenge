@@ -23,11 +23,6 @@ import org.junit.Test
 class SeriesListsFeatures : BaseUITest(){
 
     @Test
-    fun displayAppTitle(){
-        assertDisplayed(R.string.app_display_title)
-    }
-
-    @Test
     fun displaySearchBar(){
         assertDisplayed(R.id.series_list_searchview)
     }
@@ -109,7 +104,7 @@ class SeriesListsFeatures : BaseUITest(){
     }
 
     private fun enterTextAndSearch(textToSearch:String="Under the Dome" ) {
-        onView(withId(R.id.series_list_searchview)).perform(click());
+        onView(withId(R.id.series_list_searchview)).perform(click())
         onView(withId(R.id.series_list_searchview))
             .perform(SearchViewActionExtension.typeText(textToSearch))
             .perform(pressKey(KeyEvent.KEYCODE_ENTER))
