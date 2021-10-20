@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @Parcelize
 class Series(
-    val id:String?,
+    val id:String,
     val image: Images?,
     val name:String?,
     val schedule: Schedule?,

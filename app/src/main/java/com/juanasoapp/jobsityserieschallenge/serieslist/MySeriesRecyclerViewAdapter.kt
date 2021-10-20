@@ -29,7 +29,6 @@ class MySeriesRecyclerViewAdapter(
         Glide.with(context)
             .load(item.image?.original)
             .fallback(R.mipmap.no_image_placeholder)
-//            .placeholder()
             .into(holder.imageView)
 
     }

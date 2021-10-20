@@ -9,7 +9,6 @@ class SeriesDetailViewModel(
     private var repository: SeriesDetailRepository
 ) : ViewModel() {
 
-
     var loader = MutableLiveData<Boolean>()
     val episodes = MutableLiveData<Result<List<Episode>>>()
 
