@@ -5,9 +5,9 @@ hello!
 
 I present to you my aproach to this particular challenge 
 
-The task I've choose to takle were only the mandatory ones, the user of this app will be able to scroll throught the list of series, choose one, see the details of the series and choose an episode in order to se its info.
+The task I've choose to takle, were only the mandatory ones, the user of this app will be able to scroll throught the list of series, choose one, see the details of the series and choose an episode in order to see Its info.
 
-What make this proyect special is that it was made entirely with TDD as the development prosess allong side with modern Android practices, every screen the user sees was already tested using Espresso and Mockito.
+What make this proyect special, is that it was made entirely with TDD as the development prosess, allong side with modern Android practices, every screen the user sees was already tested using Espresso and Mockito.
 
 to summrize, the tecnologies I've used to this project were the following:
 
