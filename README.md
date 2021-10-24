@@ -1,33 +1,30 @@
-# JobsitySeriesChallenge
+# Jobzlo! 
 
+I present to you my approach to this particular challenge 
 
-hello! 
+The task I've choose to tackle, were only the mandatory ones, the user of this app will be able to scroll through the list of series, choose one, see the details of the series and choose an episode in order to see Its info.
 
-I present to you my aproach to this particular challenge 
+What make this project special, is that it was made entirely with TDD as the development process, along side with modern Android practices, every screen the user sees was already tested using Espresso and Mockito.
 
-The task I've choose to takle, were only the mandatory ones, the user of this app will be able to scroll throught the list of series, choose one, see the details of the series and choose an episode in order to see Its info.
-
-What make this proyect special, is that it was made entirely with TDD as the development prosess, allong side with modern Android practices, every screen the user sees was already tested using Espresso and Mockito.
-
-to summrize, the tecnologies I've used to this project were the following:
+to summarize, the technologies I've used to this project were the following:
 
 TDD \
 Clean Architecture \
 MVVM \
-Esspreso (IU Test)\
+Espresso (IU Test)\
 Mockito (UnitTest)\
 Retrofit (Network)\
 Coroutines (Networks Flow)\
 Hilt (Dependency Injector)\
-JetpackNavigation (Navigations between Screens and State control)\
+JetpackNavigation (Navigation between Screens and State control)\
 Glide (Display web Images)\
 CustomViews\
 Kotlin extensions \
 
-to see it really Shine, open the proyect compile it, and them go to the JobsitySeriesChallenge/app/src/androidTest/java/com/juanasoapp/jobsityserieschallenge package, right click and click the option
+to see it really Shine, open the project compile it, and them go to the JobsitySeriesChallenge/app/src/androidTest/java/com/juanasoapp/jobsityserieschallenge package, right click and click the option
 "run tests"
-then youll se the magics of Espresso and TDD working together in order to make an escalable and test safe app 
+then you'll se the magics of Espresso and TDD working together in order to make an scalable and test safe app 
 
-I Hope you had as much of a fun time reading and trying this proyect as i had making it!
+I Hope you had as much of a fun time reading and trying this project as i had making it!
 
 -Engineer Juan Sulbaran.
