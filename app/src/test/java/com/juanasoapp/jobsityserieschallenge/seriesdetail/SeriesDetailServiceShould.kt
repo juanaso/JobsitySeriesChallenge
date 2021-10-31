@@ -1,6 +1,8 @@
 package com.juanasoapp.jobsityserieschallenge.seriesdetail
 
-import com.juanasoapp.jobsityserieschallenge.SeriesAPI
+import com.juanasoapp.jobsityserieschallenge.api.SeriesAPI
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.api.SeriesDetailService
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.model.Episode
 import com.juanasoapp.jobsityserieschallenge.utils.BaseUnitTest
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times

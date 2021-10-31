@@ -1,5 +1,6 @@
-package com.juanasoapp.jobsityserieschallenge.serieslist
+package com.juanasoapp.jobsityserieschallenge.serieslist.api
 
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

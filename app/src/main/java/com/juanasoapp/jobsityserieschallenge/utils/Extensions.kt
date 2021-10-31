@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.utils
 
 import android.os.Build
 import android.text.Html

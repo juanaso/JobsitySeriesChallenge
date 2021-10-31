@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge.seriesdetail
+package com.juanasoapp.jobsityserieschallenge.seriesdetail.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,8 +13,11 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.juanasoapp.jobsityserieschallenge.R
 import com.juanasoapp.jobsityserieschallenge.custom.CustomExpandableRecycler
-import com.juanasoapp.jobsityserieschallenge.serieslist.Series
-import com.juanasoapp.jobsityserieschallenge.setTextHTML
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.model.Episode
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.viewmodel.SeriesDetailViewModel
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.viewmodel.SeriesDetailViewModelFactory
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
+import com.juanasoapp.jobsityserieschallenge.utils.setTextHTML
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_series_detail.view.*
 import javax.inject.Inject

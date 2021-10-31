@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge.serieslist
+package com.juanasoapp.jobsityserieschallenge.serieslist.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +13,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.juanasoapp.jobsityserieschallenge.R
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
+import com.juanasoapp.jobsityserieschallenge.serieslist.viewmodel.SeriesListViewModel
+import com.juanasoapp.jobsityserieschallenge.serieslist.viewmodel.SeriesListViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_series_list.view.*
 import javax.inject.Inject
@@ -62,7 +65,7 @@ class SeriesListFragment : Fragment() {
 
     private fun setUpSearchView(view: View) {
         view.series_list_searchview.setOnClickListener {
-            (it as SearchView).isIconified = false;
+            (it as SearchView).isIconified = false
         }
 
         view.series_list_searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

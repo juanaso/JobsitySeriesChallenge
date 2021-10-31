@@ -1,7 +1,7 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.api
 
-import com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode
-import com.juanasoapp.jobsityserieschallenge.serieslist.Series
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.model.Episode
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
 import com.juanasoapp.jobsityserieschallenge.serieslist.SeriesSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

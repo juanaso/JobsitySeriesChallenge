@@ -1,6 +1,7 @@
-package com.juanasoapp.jobsityserieschallenge.serieslist
+package com.juanasoapp.jobsityserieschallenge.serieslist.viewmodel
 
 import androidx.lifecycle.*
+import com.juanasoapp.jobsityserieschallenge.serieslist.api.SeriesListRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*

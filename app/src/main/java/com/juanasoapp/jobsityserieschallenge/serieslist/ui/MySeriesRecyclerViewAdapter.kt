@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge.serieslist
+package com.juanasoapp.jobsityserieschallenge.serieslist.ui
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.juanasoapp.jobsityserieschallenge.R
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
 
 class MySeriesRecyclerViewAdapter(
     private val values: List<Series>,

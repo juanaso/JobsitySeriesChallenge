@@ -1,5 +1,8 @@
 package com.juanasoapp.jobsityserieschallenge.serieslist
 
+import com.juanasoapp.jobsityserieschallenge.serieslist.api.SeriesListRepository
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
+import com.juanasoapp.jobsityserieschallenge.serieslist.viewmodel.SeriesListViewModel
 import com.juanasoapp.jobsityserieschallenge.utils.BaseUnitTest
 import com.juanasoapp.jobsityserieschallenge.utils.captureValues
 import com.juanasoapp.jobsityserieschallenge.utils.getValueForTest

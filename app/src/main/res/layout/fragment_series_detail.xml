@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".seriesdetail.SeriesDetailFragment">
+        tools:context=".seriesdetail.ui.SeriesDetailFragment">
 
         <ImageView
             android:id="@+id/series_detail_image"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/seriesListFragment"
-        android:name="com.juanasoapp.jobsityserieschallenge.serieslist.SeriesListFragment"
+        android:name="com.juanasoapp.jobsityserieschallenge.serieslist.ui.SeriesListFragment"
         android:label="fragment_series_list"
         tools:layout="@layout/fragment_series_list" >
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/seriesDetailFragment"
-        android:name="com.juanasoapp.jobsityserieschallenge.seriesdetail.SeriesDetailFragment"
+        android:name="com.juanasoapp.jobsityserieschallenge.seriesdetail.ui.SeriesDetailFragment"
         android:label="fragment_series_detail"
         tools:layout="@layout/fragment_series_detail" >
         <argument
             android:name="currentSeries"
-            app:argType="com.juanasoapp.jobsityserieschallenge.serieslist.Series"
+            app:argType="com.juanasoapp.jobsityserieschallenge.serieslist.model.Series"
             app:nullable="false"
             />
         <action
@@ -30,12 +30,12 @@
     </fragment>
     <fragment
         android:id="@+id/episodeDetailFragment"
-        android:name="com.juanasoapp.jobsityserieschallenge.EpisodeDetailFragment"
+        android:name="com.juanasoapp.jobsityserieschallenge.seriesdetail.ui.EpisodeDetailFragment"
         android:label="fragment_episode_detail"
         tools:layout="@layout/fragment_episode_detail" >
         <argument
             android:name="currentEpisode"
-            app:argType="com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode"
+            app:argType="com.juanasoapp.jobsityserieschallenge.seriesdetail.model.Episode"
             app:nullable="false"
             />
     </fragment>

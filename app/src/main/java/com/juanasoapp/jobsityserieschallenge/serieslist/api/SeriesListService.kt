@@ -1,6 +1,8 @@
-package com.juanasoapp.jobsityserieschallenge.serieslist
+package com.juanasoapp.jobsityserieschallenge.serieslist.api
 
-import com.juanasoapp.jobsityserieschallenge.SeriesAPI
+import com.juanasoapp.jobsityserieschallenge.api.SeriesAPI
+import com.juanasoapp.jobsityserieschallenge.serieslist.api.SearchedSeriesMapper
+import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

@@ -12,7 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.juanasoapp.jobsityserieschallenge.MainActivity
 import com.juanasoapp.jobsityserieschallenge.R
-import com.juanasoapp.jobsityserieschallenge.serieslist.idlingResource
+import com.juanasoapp.jobsityserieschallenge.core.idlingResource
 import org.hamcrest.CoreMatchers
 import org.hamcrest.Description
 import org.hamcrest.Matcher

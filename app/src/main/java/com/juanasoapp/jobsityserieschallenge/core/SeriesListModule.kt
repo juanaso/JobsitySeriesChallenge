@@ -1,7 +1,7 @@
-package com.juanasoapp.jobsityserieschallenge.serieslist
+package com.juanasoapp.jobsityserieschallenge.core
 
 import com.jakewharton.espresso.OkHttp3IdlingResource
-import com.juanasoapp.jobsityserieschallenge.SeriesAPI
+import com.juanasoapp.jobsityserieschallenge.api.SeriesAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

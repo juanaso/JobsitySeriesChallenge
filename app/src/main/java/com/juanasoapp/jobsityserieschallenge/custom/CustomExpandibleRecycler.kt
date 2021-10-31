@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.juanasoapp.jobsityserieschallenge.R
-import com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.model.Episode
 import kotlinx.android.synthetic.main.custom_expandable_recycler.view.*
 import kotlinx.android.synthetic.main.custom_expandable_recycler_item.view.*
 

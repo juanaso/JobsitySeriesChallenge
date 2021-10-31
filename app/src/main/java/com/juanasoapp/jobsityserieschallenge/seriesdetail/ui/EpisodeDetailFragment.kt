@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.seriesdetail.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode
+import com.juanasoapp.jobsityserieschallenge.R
+import com.juanasoapp.jobsityserieschallenge.seriesdetail.model.Episode
+import com.juanasoapp.jobsityserieschallenge.utils.setTextHTML
 import kotlinx.android.synthetic.main.fragment_episode_detail.view.*
 
 class EpisodeDetailFragment : Fragment() {

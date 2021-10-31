@@ -1,4 +1,4 @@
-package com.juanasoapp.jobsityserieschallenge
+package com.juanasoapp.jobsityserieschallenge.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
