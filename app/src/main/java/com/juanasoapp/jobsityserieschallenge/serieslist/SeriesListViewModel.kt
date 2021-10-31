@@ -7,18 +7,19 @@ import kotlinx.coroutines.flow.*
 
 class SeriesListViewModel(
     private val repository: SeriesListRepository
-): ViewModel() {
+) : ViewModel() {
     var loader = MutableLiveData<Boolean>()
 
     @ExperimentalCoroutinesApi
-     val searchChanel = ConflatedBroadcastChannel<String>()
+    val searchChanel = ConflatedBroadcastChannel<String>()
 
     @ExperimentalCoroutinesApi
     val seriesList = liveData {
         loader.postValue(true)
         emitSource(searchChanel.asFlow()
             .flatMapConcat {
-                repository.getSeriesList(it)}
+                repository.getSeriesList(it)
+            }
             .onEach { loader.postValue(false) }
             .asLiveData())
     }

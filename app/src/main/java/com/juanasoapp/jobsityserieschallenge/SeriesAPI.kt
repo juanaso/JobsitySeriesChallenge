@@ -12,9 +12,8 @@ interface SeriesAPI {
     suspend fun fetchAllSeriesList(): List<Series>
 
     @GET("search/shows")
-    suspend fun fetchWithQuerySeriesList(@Query("q")testString: String): SeriesSearchResponse
+    suspend fun fetchWithQuerySeriesList(@Query("q") testString: String): SeriesSearchResponse
 
     @GET("shows/{id}/episodes")
-    suspend fun fetchEpisodes(@Path("id")id:String):List<Episode>
-
+    suspend fun fetchEpisodes(@Path("id") id: String): List<Episode>
 }

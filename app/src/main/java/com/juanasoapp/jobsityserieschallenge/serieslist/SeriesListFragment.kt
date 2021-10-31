@@ -25,7 +25,7 @@ class SeriesListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: SeriesListViewModelFactory
 
-    var isFirstTime= true
+    var isFirstTime = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +41,7 @@ class SeriesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(isFirstTime){
+        if (isFirstTime) {
             viewModel.onTextSet("")
             isFirstTime = false
         }
@@ -67,12 +67,12 @@ class SeriesListFragment : Fragment() {
 
         view.series_list_searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.onTextSet(query?:"")
+                viewModel.onTextSet(query ?: "")
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(newText?.isNotEmpty() == true){
+                if (newText?.isNotEmpty() == true) {
                     viewModel.onTextSet(newText)
                 }
                 return false
@@ -98,8 +98,9 @@ class SeriesListFragment : Fragment() {
     ) {
         with(view as RecyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter = MySeriesRecyclerViewAdapter(seriesList,context){
-                val action = SeriesListFragmentDirections.actionSeriesListFragmentToSeriesDetailFragment(it)
+            adapter = MySeriesRecyclerViewAdapter(seriesList, context) {
+                val action =
+                    SeriesListFragmentDirections.actionSeriesListFragmentToSeriesDetailFragment(it)
                 findNavController().navigate(action)
             }
         }

@@ -19,21 +19,20 @@ var idlingResource = OkHttp3IdlingResource.create("okhttp", client)
 class SeriesListModule {
 
     @Provides
-    fun seriesListAPI(retrofit: Retrofit)  = retrofit.create(SeriesAPI::class.java)
-
+    fun seriesListAPI(retrofit: Retrofit) = retrofit.create(SeriesAPI::class.java)
 
     @Provides
-    fun retrofit():Retrofit {
+    fun retrofit(): Retrofit {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(logging)
 
 
-       return Retrofit.Builder()
-        .baseUrl("https://api.tvmaze.com/")
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+        return Retrofit.Builder()
+            .baseUrl("https://api.tvmaze.com/")
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }

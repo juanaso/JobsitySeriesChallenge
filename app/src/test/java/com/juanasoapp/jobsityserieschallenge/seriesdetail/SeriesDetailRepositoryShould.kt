@@ -12,13 +12,12 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert
 import org.junit.Test
 
-class SeriesDetailRepositoryShould:BaseUnitTest() {
+class SeriesDetailRepositoryShould : BaseUnitTest() {
 
     private val service: SeriesDetailService = mock()
     private val episodes = mock<List<Episode>>()
     private val exception = RuntimeException(errorMessage)
     private val id = "1"
-
 
     @Test
     fun getEpisodesFromService() = runBlockingTest {
@@ -27,15 +26,14 @@ class SeriesDetailRepositoryShould:BaseUnitTest() {
         verify(service, times(1)).fetchEpisodes(id)
     }
     @Test
-    fun emitsEpisodesFromService() = runBlockingTest{
+    fun emitsEpisodesFromService() = runBlockingTest {
         val repository = mockSuccessfulCase()
         Assert.assertEquals(episodes, repository.getEpisodes(id).first().getOrNull())
     }
 
     @Test
-    fun propagateErrors() = runBlockingTest{
-        val repository =  mockFailureCase()
-
+    fun propagateErrors() = runBlockingTest {
+        val repository = mockFailureCase()
         Assert.assertEquals(exception, repository.getEpisodes(id).first().exceptionOrNull())
     }
 

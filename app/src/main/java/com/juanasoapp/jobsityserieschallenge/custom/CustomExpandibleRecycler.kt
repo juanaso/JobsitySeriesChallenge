@@ -26,17 +26,22 @@ class CustomExpandableRecycler @JvmOverloads constructor(
         setUpAdapter()
     }
 
-    fun setSeasonTitle(title:String){
+    fun setSeasonTitle(title: String) {
         custom_expandable_recycler_title.text = title
     }
 
     private fun setUpListeners() {
         custom_expandable_recycler_title_root.setOnClickListener {
-            custom_expandable_recycler_list.visibility = when(custom_expandable_recycler_list.visibility){
-                View.VISIBLE ->{View.GONE}
-                View.GONE ->{View.VISIBLE}
-                else -> View.GONE
-            }
+            custom_expandable_recycler_list.visibility =
+                when (custom_expandable_recycler_list.visibility) {
+                    View.VISIBLE -> {
+                        View.GONE
+                    }
+                    View.GONE -> {
+                        View.VISIBLE
+                    }
+                    else -> View.GONE
+                }
         }
     }
 
@@ -55,7 +60,7 @@ class CustomExpandableRecycler @JvmOverloads constructor(
         custom_expandable_recycler_list.adapter = genericAdapter
     }
 
-    fun setEpisodes(episodes:List<Episode>) {
+    fun setEpisodes(episodes: List<Episode>) {
         genericAdapter?.setItems(episodes)
     }
 }

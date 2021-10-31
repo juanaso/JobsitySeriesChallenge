@@ -6,10 +6,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Episode(
-    val id:String,
-    val number:String,
-    val name:String?="",
-    val summary:String,
-    val season:String,
-    val image: Images?): Parcelable {
-}
+    val id: String,
+    val number: String,
+    val name: String? = "",
+    val summary: String,
+    val season: String,
+    val image: Images?
+) : Parcelable

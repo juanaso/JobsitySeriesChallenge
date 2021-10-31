@@ -9,7 +9,7 @@ import com.juanasoapp.jobsityserieschallenge.utils.BaseUITest
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import org.junit.Test
 
-class EpisodeDetailFeatures:BaseUITest() {
+class EpisodeDetailFeatures : BaseUITest() {
 
     private val episodeDetailTitle = "Pilot"
     private val episodeDetailNumber = "Episode 1"

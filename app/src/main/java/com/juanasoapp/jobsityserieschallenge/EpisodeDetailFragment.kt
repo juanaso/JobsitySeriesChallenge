@@ -1,15 +1,14 @@
 package com.juanasoapp.jobsityserieschallenge
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.juanasoapp.jobsityserieschallenge.seriesdetail.Episode
 import kotlinx.android.synthetic.main.fragment_episode_detail.view.*
-
 
 class EpisodeDetailFragment : Fragment() {
 
@@ -17,9 +16,9 @@ class EpisodeDetailFragment : Fragment() {
 
     lateinit var currentEpisode: Episode
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -31,7 +30,6 @@ class EpisodeDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpView(view)
-
     }
 
     private fun setUpView(view: View) {
@@ -45,7 +43,7 @@ class EpisodeDetailFragment : Fragment() {
         view.episode_detail_name.text = currentEpisode.name
         view.episode_season.text = "Season ${currentEpisode.season}"
         view.episode_number.text = "Episode ${currentEpisode.number}"
-        view.episode_sumary.text = currentEpisode.summary?.let { setTextHTML(it) }
+        view.episode_sumary.text = currentEpisode.summary.let { setTextHTML(it) }
     }
 
     companion object {

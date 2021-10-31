@@ -1,14 +1,17 @@
 package com.juanasoapp.jobsityserieschallenge
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.hasSibling
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.juanasoapp.jobsityserieschallenge.utils.BaseUITest
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import org.junit.Test
 
-class SeriesDetailFeatures:BaseUITest() {
+class SeriesDetailFeatures : BaseUITest() {
 
     private val seriesDetailWeekTimeDummy = "Thursday"
     private val seriesDetailAirTimeDummy = "22:00"
@@ -28,7 +31,7 @@ class SeriesDetailFeatures:BaseUITest() {
     }
 
     @Test
-    fun getListOfEpisodesFromRepository(){
+    fun getListOfEpisodesFromRepository() {
         NavigateToDetail()
 
         onView(
@@ -37,7 +40,7 @@ class SeriesDetailFeatures:BaseUITest() {
     }
 
     @Test
-    fun navigateToEpisodeDetailScreen(){
+    fun navigateToEpisodeDetailScreen() {
         NavigateToDetail()
         Thread.sleep(1000)
         onView(withId(R.id.series_detail_root))
