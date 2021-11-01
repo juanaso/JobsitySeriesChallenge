@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Series(
+data class Series(
     val id: String,
     val image: Images?,
     val name: String?,

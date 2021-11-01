@@ -5,7 +5,7 @@ import com.juanasoapp.jobsityserieschallenge.serieslist.model.Images
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Episode(
+data class Episode(
     val id: String,
     val number: String,
     val name: String? = "",

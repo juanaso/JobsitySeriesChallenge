@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Images(
+data class Images(
     val original:String?,
 ):Parcelable
