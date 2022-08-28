@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.*
 class SeriesListViewModel(
     private val repository: SeriesListRepository
 ) : ViewModel() {
-    var loader = MutableLiveData<Boolean>()
     val isLoading = MutableLiveData<Boolean>()
 
     @ExperimentalCoroutinesApi

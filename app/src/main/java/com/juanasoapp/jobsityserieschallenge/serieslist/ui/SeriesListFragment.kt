@@ -45,7 +45,6 @@ class SeriesListFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         setUpObserversRecycler(binding.seriesList)
-        setUpObserverLoader(binding.root)
         setUpSearchView(binding.root)
         return binding.root
     }
@@ -56,19 +55,6 @@ class SeriesListFragment : Fragment() {
             viewModel.onTextSet("")
             isFirstTime = false
         }
-    }
-
-    private fun setUpObserverLoader(view: View) {
-//        viewModel.loader.observe(this as LifecycleOwner) { loading ->
-//            when (loading) {
-//                true -> {
-////                    view.series_list_loader.visibility = View.VISIBLE
-//                }
-//                false -> {
-////                    view.series_list_loader.visibility = View.GONE
-//                }
-//            }
-//        }
     }
 
     private fun setUpSearchView(view: View) {
