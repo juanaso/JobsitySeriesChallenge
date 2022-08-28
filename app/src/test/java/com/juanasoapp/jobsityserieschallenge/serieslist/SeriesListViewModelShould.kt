@@ -70,7 +70,7 @@ class SeriesListViewModelShould : BaseUnitTest() {
     @Test
     fun displaySpinnerWhileLoading() = runBlockingTest {
         val viewModel = mockSuccessfulCase()
-        viewModel.loader.captureValues {
+        viewModel.isLoading.captureValues {
             viewModel.seriesList.getValueForTest()
             assertEquals(true, values[0])
         }
@@ -80,7 +80,7 @@ class SeriesListViewModelShould : BaseUnitTest() {
     @Test
     fun closeSpinnerAfterSeriesListLoads() = runBlockingTest {
         val viewModel = mockSuccessfulCase()
-        viewModel.loader.captureValues {
+        viewModel.isLoading.captureValues {
             viewModel.searchChanel.send("")
             viewModel.searchChanel.openSubscription().cancel()
             viewModel.seriesList.getValueForTest()

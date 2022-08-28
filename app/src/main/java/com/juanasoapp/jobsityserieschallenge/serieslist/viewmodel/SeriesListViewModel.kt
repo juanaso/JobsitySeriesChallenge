@@ -10,24 +10,27 @@ class SeriesListViewModel(
     private val repository: SeriesListRepository
 ) : ViewModel() {
     var loader = MutableLiveData<Boolean>()
+    val isLoading = MutableLiveData<Boolean>()
 
     @ExperimentalCoroutinesApi
     val searchChanel = ConflatedBroadcastChannel<String>()
 
     @ExperimentalCoroutinesApi
     val seriesList = liveData {
-        loader.postValue(true)
+        isLoading.postValue(true)
         emitSource(searchChanel.asFlow()
             .flatMapConcat {
                 repository.getSeriesList(it)
             }
-            .onEach { loader.postValue(false) }
+            .onEach {
+                isLoading.postValue(false)
+            }
             .asLiveData())
     }
 
     @ExperimentalCoroutinesApi
     fun onTextSet(query: String) {
-        loader.postValue(true)
+        isLoading.postValue(true)
         (seriesList as MutableLiveData).value = Result.success(emptyList())
         searchChanel.offer(query)
     }

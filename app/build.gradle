@@ -36,6 +36,9 @@ android {
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

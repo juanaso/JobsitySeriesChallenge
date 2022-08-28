@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import com.juanasoapp.jobsityserieschallenge.R
+import com.juanasoapp.jobsityserieschallenge.databinding.FragmentSeriesListBinding
 import com.juanasoapp.jobsityserieschallenge.serieslist.model.Series
 import com.juanasoapp.jobsityserieschallenge.serieslist.viewmodel.SeriesListViewModel
 import com.juanasoapp.jobsityserieschallenge.serieslist.viewmodel.SeriesListViewModelFactory
@@ -25,6 +27,8 @@ class SeriesListFragment : Fragment() {
 
     lateinit var viewModel: SeriesListViewModel
 
+    private lateinit var binding: FragmentSeriesListBinding
+
     @Inject
     lateinit var viewModelFactory: SeriesListViewModelFactory
 
@@ -34,12 +38,16 @@ class SeriesListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_series_list, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_series_list, container, false)
+//        val view = inflater.inflate(R.layout.fragment_series_list, container, false)
         setUpViewModel()
-        setUpObserversRecycler(view.series_list)
-        setUpObserverLoader(view)
-        setUpSearchView(view)
-        return view
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        setUpObserversRecycler(binding.seriesList)
+        setUpObserverLoader(binding.root)
+        setUpSearchView(binding.root)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,16 +59,16 @@ class SeriesListFragment : Fragment() {
     }
 
     private fun setUpObserverLoader(view: View) {
-        viewModel.loader.observe(this as LifecycleOwner) { loading ->
-            when (loading) {
-                true -> {
-                    view.series_list_loader.visibility = View.VISIBLE
-                }
-                false -> {
-                    view.series_list_loader.visibility = View.GONE
-                }
-            }
-        }
+//        viewModel.loader.observe(this as LifecycleOwner) { loading ->
+//            when (loading) {
+//                true -> {
+////                    view.series_list_loader.visibility = View.VISIBLE
+//                }
+//                false -> {
+////                    view.series_list_loader.visibility = View.GONE
+//                }
+//            }
+//        }
     }
 
     private fun setUpSearchView(view: View) {
